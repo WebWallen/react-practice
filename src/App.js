@@ -1,71 +1,85 @@
 import React from 'react';
-import './App.css';
 
-function App() {
+class IndecisonApp extends React.Component {
+  render() {
+    const title = "Indecision";
+    const subtitle = "Put Your life in the hands of a computer."
+    const options = ["Stuff", "Things", "Stuff and Things"]
 
-const app = {
-  // Can't render whole object, must use properties (string/num)
-  title: 'Indecision App', 
-  subtitle: 'Put your life in the hands of a computer',
-  options: ['One', 'Two', 'Three']
-};
-
-const submit = (e) => {
-  e.preventDefault();
-  e.target.name = e.target.value
+    return (
+      <div>
+        {/* Props allow us to pass custom info to components */}
+        <Header title={title} subtitle={subtitle}/>
+        <Action />
+        <Options options={options}/>
+        <AddOption />
+      </div>
+    )
+  }
 }
 
-const numbers = [50, 100, 150];
-
-// JSX Variable
-const template = (
-  <div>
-    {/* Javascript expressions go in curly braces */}
-    <h1>{app.title}</h1>
-    {/* This is good for making dynamic values in a big database */}
-    {app.subtitle && <p>{app.subtitle}</p>}
-    <p>{app.options.length > 0 ? 'Here are your options: ' : 'No options'}</p>
-    <ol>
-      {
-        app.options.map(op => <li key={op}>Option: {op}</li>)
-      }
-    </ol>
-    {
-      numbers.map(num => <p key={num}>Number: {num}</p>)
-    }
-    <form onSubmit={submit}>
-      <input type="test" name="option"></input>
-      <button>Add Option</button>
-    </form>
-  </div>
-)
-
-const user = {
-  name: 'Daniel',
-  age: 32,
-  location: 'Kingsport'
-};
-
-function getLocation(location) {
-  return location ? <p>Location: {location}</p> : undefined;
+class Header extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>{this.props.title}</h1>
+        <h2>{this.props.subtitle}</h2>
+      </div>
+    );
+  }
 }
 
-const templateTwo = (
-  <div>
-    <h1>{user.name ? user.name : 'Anonymous'}</h1>
-    {user.age && user.age >= 18 && <p>Age: {user.age}</p>}
-    {/* If location isn't defined, nothing shows up */}
-    {getLocation(user.location)}
-  </div>
-)
+class Action extends React.Component {
+  render() {
+    return (
+      <div>
+        <button>What should I do?</button>
+      </div>
+    );
+  }
+}
 
+class Options extends React.Component {
+  render() {
+    return (
+      <div>
+        <ul>
+          {
+            this.props.options.map(option => <Option key={option} text={option}/>)
+          }
+          {/* <Option /> */}
+        </ul>
+      </div>
+    );
+  }
+}
+
+class Option extends React.Component {
+  render() {
+    return (
+      <div>
+        {this.props.text}
+      </div>
+    )
+  }
+}
+
+class AddOption extends React.Component {
+  render() {
+    return (
+      <div>
+        <form>
+          <input type="text" placeholder="Add more stuff/things."></input>
+        </form>
+      </div>
+    );
+  }
+}
+
+export default function App() {
   return (
-    <div className="App">
-      {template}
-      {templateTwo}
-    </div>
-  );
-
+    <>
+      <IndecisonApp />
+    </>
+  )
 }
-
-export default App;
