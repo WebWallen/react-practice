@@ -2,14 +2,14 @@ import React from 'react';
 import Counter from './practice/counter';
 import Visibility from './practice/visibility';
 
-class IndecisonApp extends React.Component {
+class IndecisionApp extends React.Component {
   constructor(props) {
     super(props);
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
     this.handlePick = this.handlePick.bind(this);
     this.handleAddOption = this.handleAddOption.bind(this);
     this.state = {
-      options: []
+      options: props.options
     };
   }
 
@@ -49,7 +49,7 @@ class IndecisonApp extends React.Component {
     return (
       <div>
         {/* Props allow us to pass custom info to components */}
-        <Header title={title} subtitle={subtitle}/>
+        <Header />
         <Action 
           hasOptions={this.state.options.length > 0} 
           handlePick={this.handlePick}
@@ -59,60 +59,62 @@ class IndecisonApp extends React.Component {
           handleDeleteOptions={this.handleDeleteOptions}
         />
         <AddOption handleAddOption={this.handleAddOption} />
+        <User name="Daniel" age={33}/>
       </div>
     )
   }
 }
 
-class Header extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>{this.props.title}</h1>
-        <h2>{this.props.subtitle}</h2>
-      </div>
-    );
-  }
+IndecisionApp.defaultProps = {
+  options: []
 }
 
-class Action extends React.Component {
-  render() {
-    return (
-      <div>
-        <button 
-          onClick={this.props.handlePick}
-          disabled={!this.props.hasOptions}
-        >
-          What should I do?
-        </button>
-      </div>
-    );
-  }
+const Header = (props) => {
+  return (
+    <div>
+      <h1>{props.title}</h1>
+      {props.subtitle && <h2>{props.subtitle}</h2>}
+    </div>
+  );
 }
 
-class Options extends React.Component {
-  render() {
-    return (
-      <div>
-        <ul>
-          {
-            this.props.options.map(option => <Option key={option} text={option}/>)
-          }
-        </ul>
-        <button onClick={this.props.handleDeleteOptions}>Remove All</button>
-      </div>
-    );
-  }
+Header.defaultProps = {
+  title: 'Indecision',
+  subtitle: 'Put Your Life in the Hands of a Computer'
 }
 
-class Option extends React.Component {
-  render() {
-    return (
-      <div>
-        {this.props.text}
-      </div>
-    )
-  }
+const Action = (props) => {
+  return (
+    <div>
+      <button 
+        onClick={props.handlePick}
+        disabled={!props.hasOptions}
+      >
+        What should I do?
+      </button>
+    </div>
+  );
+}
+
+const Options = (props) => {
+  return (
+    <div>
+      <ul>
+        {
+          props.options.map(option => <Option key={option} text={option}/>)
+        }
+      </ul>
+      <button onClick={props.handleDeleteOptions}>Remove All</button>
+    </div>
+  );
+}
+
+const Option = (props) => {
+  return (
+    <div>
+      {props.text}
+    </div>
+  )
 }
 
 class AddOption extends React.Component {
@@ -149,12 +151,25 @@ class AddOption extends React.Component {
   }
 }
 
+
+// Stateless functional component practice
+const User = (props) => {
+  return (
+    <div>
+      {/* Difference: no "this" -- and faster sans class overhead*/}
+      <p>Name: {props.name}</p>
+      <p>Age: {props.age}</p>
+    </div>
+  )
+}
+
 export default function App() {
   return (
     <>
-      <IndecisonApp />
-      {/* <Counter />
-      <Visibility /> */}
+      {/* Default props are now empty array, this is custom */}
+      <IndecisionApp options={['Pitbull', 'Poodle']}/>
+      <Counter />
+      {/* <Visibility />  */}
     </>
   )
 }
