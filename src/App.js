@@ -5,16 +5,28 @@ import Visibility from './practice/visibility';
 class IndecisionApp extends React.Component {
   constructor(props) {
     super(props);
+    // Bind each method to their specific instances as defined by "this"
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
     this.handlePick = this.handlePick.bind(this);
     this.handleAddOption = this.handleAddOption.bind(this);
+    this.handleDeleteOption = this.handleDeleteOption.bind(this);
     this.state = {
       options: props.options
     };
   }
 
+  // Delete all options by setting to empty array
   handleDeleteOptions() {
     this.setState(() => ({ options: [] }))
+  }
+
+  // Delete one option
+  handleDeleteOption(optionToRemove) {
+    console.log('delete ', optionToRemove)
+    this.setState((prevState) => ({
+      // Filter out the option specified to remove by making not equal to other options
+      options: prevState.options.filter((option) => optionToRemove !== option)
+    }));
   }
 
   handlePick() {
@@ -23,6 +35,7 @@ class IndecisionApp extends React.Component {
     alert(option);
   }
 
+  // Add option by concating previous options state to an array-ified container for new option
   handleAddOption(option) {
     if (!option) return 'Enter valid value to add item';
     
@@ -47,7 +60,9 @@ class IndecisionApp extends React.Component {
         />
         <Options 
           options={this.state.options}
+          // Variables/elements require state, functions/methods don't
           handleDeleteOptions={this.handleDeleteOptions}
+          handleDeleteOption={this.handleDeleteOption}
         />
         <AddOption handleAddOption={this.handleAddOption} />
         <User name="Daniel" age={33}/>
@@ -92,7 +107,14 @@ const Options = (props) => {
     <div>
       <ul>
         {
-          props.options.map(option => <Option key={option} text={option}/>)
+          props.options.map((option) => (
+            <Option 
+              key={option} 
+              text={option}
+              // Passing in parent method to child via props
+              handleDeleteOption={props.handleDeleteOption}
+            />
+          ))
         }
       </ul>
       <button onClick={props.handleDeleteOptions}>Remove All</button>
@@ -104,6 +126,14 @@ const Option = (props) => {
   return (
     <div>
       {props.text}
+      <button 
+        // To make dynamic, use a CB with onClick and pass in the text to be deleted via props
+        onClick={((e) => {
+          props.handleDeleteOption(props.text);
+        })}
+      >
+        Delete
+      </button>
     </div>
   )
 }
