@@ -15,6 +15,35 @@ class IndecisionApp extends React.Component {
     };
   }
 
+  // Lifecycle methods only available in class-based components
+  // Local storage only works with strings, hence need for JSON
+  componentDidMount() {
+    try {
+      const json = localStorage.getItem('options');
+      const options = JSON.parse(json);
+
+      if (options) {
+      // Now options are persisted after reloads
+        this.setState(() => ({ options }));
+        console.log('Fetching data');
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.options.length !== this.state.options.length) {
+      const json = JSON.stringify(this.state.options);
+      localStorage.setItem('options', json);
+      console.log('Saving data')
+    }
+  }
+
+  componentWillUnmount() {
+    console.log('Component will unmount');
+  }
+
   // Delete all options by setting to empty array
   handleDeleteOptions() {
     this.setState(() => ({ options: [] }))
@@ -105,6 +134,7 @@ const Action = (props) => {
 const Options = (props) => {
   return (
     <div>
+      {props.options.length === 0 && <p>Please add an option to get started!</p>}
       <ul>
         {
           props.options.map((option) => (
@@ -153,6 +183,9 @@ class AddOption extends React.Component {
     const error = this.props.handleAddOption(option);
 
     this.setState(() => ({ error: error }));
+
+    // Clear input after submission 
+    if (!error) e.target.elements.option.value = '';
   }
 
   render() {
