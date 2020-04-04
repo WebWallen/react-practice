@@ -213,8 +213,8 @@ export default function App() {
   return (
     <>
       {/* Default props are now empty array, this is custom */}
-      {/* <IndecisionApp options={['Pitbull', 'Poodle']}/> */}
-      <Counter />
+      <IndecisionApp/>
+      {/* <Counter /> */}
       {/* <Visibility />  */}
     </>
   )
