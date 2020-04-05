@@ -213,9 +213,9 @@ export default function App() {
   return (
     <>
       {/* Default props are now empty array, this is custom */}
-      <IndecisionApp/>
+      {/* <IndecisionApp/> */}
       {/* <Counter /> */}
-      {/* <Visibility />  */}
+      <Visibility /> 
     </>
   )
 }
