@@ -1,67 +1,29 @@
 import React from 'react';
-import './App.css'
-import { Route, Switch, Link, NavLink } from 'react-router-dom';
-
-const ExpenseDashboardPage = () => (
-  <div>
-    This is from my dashboard component
-  </div>
-);
-
-const AddExpensePage = () => (
-  <div>
-    This is from my add expense component
-  </div>
-);
-
-const EditExpensePage = () => (
-  <div>
-    This is from my edit expense component 
-  </div>
-);
-
-const HelpPage = () => (
-  <div>
-    This is from the help page
-  </div>
-)
-
-const NotFoundPage = () => (
-  <div>
-    {/* Links eliminate full page refresh, merely swaps in new content */}
-    404 - <Link to="/">Go Home</Link>
-  </div>
-)
-
-// Header isn't in Switch because we want it to appear in every component
-const Header = () => (
-  <header>
-    <h1>Expensify</h1>
-    {/* Navlink is identical to Link but better as we can add style props -- add exact so it only affects one route at a time */}
-    <NavLink to="/" activeClassName="is-active" exact={true}>Dashboard</NavLink>
-    <NavLink to="/add" activeClassName="is-active">Add Expense</NavLink>
-    <NavLink to="/edit" activeClassName="is-active">Edit Expense</NavLink>
-    <NavLink to="/help" activeClassName="is-active">Help</NavLink>
-  </header>
-)
-
-// Blank slate as we are moving on to a different project (preserved previous one inside the practice folder)
+import './App.css';
+import { Route, Switch } from 'react-router-dom';
+import Header from './components/Header';
+import Dashboard from './components/Dashboard';
+import AddExpense from './components/AddExpense';
+import EditExpense from './components/EditExpense';
+import Help from './components/Help';
+import NotFound from './components/NotFound';
 
 export default function App() {
   return (
     <>
+     {/* Not in Switch because we want nav/header to display on all components */}
      <Header />
+     {/* Routes */}
      <Switch>
-     {/* Exact avoids accidental loading of one app on top of another */}
-      <Route exact path="/" component={ExpenseDashboardPage} />
-      <Route path="/add" component={AddExpensePage} />
-      <Route path="/edit" component={EditExpensePage} />
-      <Route path="/help" component={HelpPage} />
-      {/* Switch allows us to add Not Found Page if URL doesn't match a path */}
-      <Route component={NotFoundPage} />
+        {/* Exact avoids accidental loading of one component on top of another */}
+        <Route exact path="/" component={Dashboard} />
+        <Route path="/add" component={AddExpense} />
+        {/* Adding :id allows us to make the route dynamic (note: ID also used in component) */}
+        <Route path="/edit/:id" component={EditExpense} />
+        <Route path="/help" component={Help} />
+        {/* Switch allows us to add Not Found Page if URL doesn't match a specified path */}
+        <Route component={NotFound} />
      </Switch>
     </>
-
   )
-
 }
