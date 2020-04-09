@@ -11,7 +11,7 @@ import NotFound from './components/NotFound';
 export default function App() {
   return (
     <>
-     {/* Not in Switch because we want nav/header to display on all components */}
+     {/* Not in Switch because we want the navigation menu and header to display on all components */}
      <Header />
      {/* Routes */}
      <Switch>
