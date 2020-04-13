@@ -13,7 +13,8 @@ export default function App() {
     <>
      {/* Not in Switch because we want the navigation menu and header to display on all components */}
      <Header />
-     {/* Routes */}
+
+     {/* Begin routes */}
      <Switch>
         {/* Exact avoids accidental loading of one component on top of another */}
         <Route exact path="/" component={Dashboard} />
@@ -24,6 +25,7 @@ export default function App() {
         {/* Switch allows us to add Not Found Page if URL doesn't match a specified path */}
         <Route component={NotFound} />
      </Switch>
+     
     </>
   )
 }
