@@ -25,9 +25,13 @@ const resetCount = () => ({
     type: 'RESET'
 })
 
-export default function ReduxPractice() {
-    // Set up state with default value
-    const store = createStore((state = { count : 0 }, action) => {
+// Reducers
+// 1. Pure functions (doesn't change anything outside of functional scope)
+// 2. Never directly change state or action (instead return object of new state)
+
+export default function ReduxPractice() {    
+    // Reducers specify how to manipulate state based on action
+    const countReducer = (state = { count : 0 }, action) => {
         switch (action.type) {
             case 'INCREMENT':
                 // If a number is attached, add by that; if not, increment by 1
@@ -51,7 +55,7 @@ export default function ReduxPractice() {
             default: 
                 return state;
         }     
-    });
+    };
 
     // Watch changes to the store's state
     const unsubscribe = store.subscribe(() => {
