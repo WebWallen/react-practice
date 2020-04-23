@@ -31,7 +31,7 @@ const resetCount = () => ({
 
 export default function ReduxPractice() {    
     // Reducers specify how to manipulate state based on action
-    const countReducer = (state = { count : 0 }, action) => {
+    const store = (state = { count : 0 }, action) => {
         switch (action.type) {
             case 'INCREMENT':
                 // If a number is attached, add by that; if not, increment by 1
