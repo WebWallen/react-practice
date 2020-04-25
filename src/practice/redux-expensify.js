@@ -79,14 +79,14 @@ export default function ReduxExpensify() {
         type: 'SORT_BY_DATE',
     });
 
-    const setStartDate = (date) => ({
+    const setStartDate = (startDate) => ({
         type: 'SET_START_DATE',
-        date
+        startDate
     });
 
-    const setEndDate = (date) => ({
+    const setEndDate = (endDate) => ({
         type: 'SET_END_DATE',
-        date
+        endDate
     });
 
     // Filters reducer 
@@ -102,7 +102,6 @@ export default function ReduxExpensify() {
             case 'SET_TEXT_FILTER': 
                 return {
                     // Pass in current state, then change text property to action's text value
-                    // Note: can't use filter because we are returning an object vs an array here
                     ...state,
                     text: action.text
                 }
@@ -122,13 +121,13 @@ export default function ReduxExpensify() {
             case 'SET_START_DATE':
                 return {
                     ...state,
-                    startDate: action.date
+                    startDate: action.startDate
                 }
 
             case 'SET_END_DATE':
                 return {
                     ...state,
-                    endDate: action.date
+                    endDate: action.endDate
                 }
 
             default: 
