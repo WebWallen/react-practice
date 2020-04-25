@@ -69,7 +69,25 @@ export default function ReduxExpensify() {
     const setTextFilter = (text = '') => ({
         type: 'SET_TEXT_FILTER',
         text
-    })
+    });
+
+    const sortByAmount = () => ({
+        type: 'SORT_BY_AMOUNT',
+    });
+
+    const sortByDate = () => ({
+        type: 'SORT_BY_DATE',
+    });
+
+    const setStartDate = (date) => ({
+        type: 'SET_START_DATE',
+        date
+    });
+
+    const setEndDate = (date) => ({
+        type: 'SET_END_DATE',
+        date
+    });
 
     // Filters reducer 
     const filtersReducerDefaultState = {
@@ -87,6 +105,30 @@ export default function ReduxExpensify() {
                     // Note: can't use filter because we are returning an object vs an array here
                     ...state,
                     text: action.text
+                }
+
+            case 'SORT_BY_AMOUNT':
+                return {
+                    ...state,
+                    sortBy: 'amount'
+                }
+
+            case 'SORT_BY_DATE':
+                return {
+                    ...state,
+                    sortBy: 'date'
+                }
+
+            case 'SET_START_DATE':
+                return {
+                    ...state,
+                    startDate: action.date
+                }
+
+            case 'SET_END_DATE':
+                return {
+                    ...state,
+                    endDate: action.date
                 }
 
             default: 
@@ -114,6 +156,13 @@ export default function ReduxExpensify() {
 
     store.dispatch(setTextFilter('rent'));
     store.dispatch(setTextFilter());
+
+    store.dispatch(sortByAmount());
+    store.dispatch(sortByDate());
+
+    store.dispatch(setStartDate(125));
+    store.dispatch(setStartDate());
+    store.dispatch(setEndDate(1250));
 
     const demoState = {
         expenses: [{
