@@ -143,6 +143,7 @@ export default function ReduxExpensify() {
         })
     );
 
+    // Print store updates to console so we can make sure dispatches work
     store.subscribe(() => {
         console.log(store.getState());
     })
@@ -162,6 +163,8 @@ export default function ReduxExpensify() {
     store.dispatch(setStartDate(125));
     store.dispatch(setStartDate());
     store.dispatch(setEndDate(1250));
+
+
 
     const demoState = {
         expenses: [{
@@ -183,15 +186,3 @@ export default function ReduxExpensify() {
         <div>Nothing to see here</div>
     )
 }
-
-// Object spread practice
-const user = {
-    name: 'Jen',
-    age: 24
-};
-
-console.log({
-    ...user,
-    location: 'Philadelphia',
-    age: 27
-})
