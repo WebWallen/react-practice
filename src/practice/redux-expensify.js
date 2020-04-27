@@ -104,31 +104,31 @@ export default function ReduxExpensify() {
                     // Pass in current state, then change text property to action's text value
                     ...state,
                     text: action.text
-                }
+                };
 
             case 'SORT_BY_AMOUNT':
                 return {
                     ...state,
                     sortBy: 'amount'
-                }
+                };
 
             case 'SORT_BY_DATE':
                 return {
                     ...state,
                     sortBy: 'date'
-                }
+                };
 
             case 'SET_START_DATE':
                 return {
                     ...state,
                     startDate: action.startDate
-                }
+                };
 
             case 'SET_END_DATE':
                 return {
                     ...state,
                     endDate: action.endDate
-                }
+                };
 
             default: 
                 return state;
@@ -146,7 +146,7 @@ export default function ReduxExpensify() {
     // Print store updates to console so we can make sure dispatches work
     store.subscribe(() => {
         console.log(store.getState());
-    })
+    });
 
     const expenseOne = store.dispatch(addExpense({ description: 'Coffee', amount: 2 }));
     const expenseTwo = store.dispatch(addExpense({ description: 'DC Universe', amount: 7 }));
@@ -163,8 +163,6 @@ export default function ReduxExpensify() {
     store.dispatch(setStartDate(125));
     store.dispatch(setStartDate());
     store.dispatch(setEndDate(1250));
-
-
 
     const demoState = {
         expenses: [{
