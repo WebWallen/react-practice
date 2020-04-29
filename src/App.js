@@ -9,6 +9,20 @@ import Help from './components/Help';
 import NotFound from './components/NotFound';
 import ReduxPractice from './practice/redux-101';
 import ReduxExpensify from './practice/redux-expensify';
+// Begin React/Redux Expensify Imports
+import configureStore from './store/configureStore';
+import { addExpense } from './actions/expenses';
+import { setTextFilter } from './actions/filters';
+import getVisibleExpenses from './selectors/expenses';
+
+const store = configureStore();
+
+store.dispatch(addExpense({ description: 'Coffee' }));
+store.dispatch(addExpense({ description: 'Tacos' }));
+store.dispatch(setTextFilter('taco'));
+store.dispatch(getVisibleExpenses());
+
+console.log(store.getState());
 
 export default function App() {
   return (
