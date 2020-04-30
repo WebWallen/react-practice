@@ -1,3 +1,11 @@
+import {
+    SET_TEXT_FILTER,
+    SORT_BY_AMOUNT,
+    SORT_BY_DATE,
+    SET_START_DATE,
+    SET_END_DATE
+} from '../actions/filters';
+
 // Filters reducer 
 const filtersReducerDefaultState = {
     text: '',
@@ -6,34 +14,34 @@ const filtersReducerDefaultState = {
     endDate: undefined
 };
 
-export default function filtersReducer (state = filtersReducerDefaultState, action) {
+export const filtersReducer = (state = filtersReducerDefaultState, action) => {
     switch (action.type) {
-        case 'SET_TEXT_FILTER': 
+        case SET_TEXT_FILTER: 
             return {
                 // Pass in current state, then change text property to action's text value
                 ...state,
                 text: action.text
             };
 
-        case 'SORT_BY_AMOUNT':
+        case SORT_BY_AMOUNT:
             return {
                 ...state,
                 sortBy: 'amount'
             };
 
-        case 'SORT_BY_DATE':
+        case SORT_BY_DATE:
             return {
                 ...state,
                 sortBy: 'date'
             };
 
-        case 'SET_START_DATE':
+        case SET_START_DATE:
             return {
                 ...state,
                 startDate: action.startDate
             };
 
-        case 'SET_END_DATE':
+        case SET_END_DATE:
             return {
                 ...state,
                 endDate: action.endDate
