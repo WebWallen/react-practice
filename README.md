@@ -1,4 +1,4 @@
-## React/Redux 
+## React/Redux Mastercourse
 
 Repo to keep practice files and application projects (such as "Expensify" -- a budgeting/online banking type app used to enter, render, and sort expenses) from "The Complete React Developer Course w/ Hooks and Redux" by Andrew Mead. 
 
