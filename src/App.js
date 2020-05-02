@@ -57,7 +57,7 @@ export default function App() {
         />
         <Route 
           path="/hoc-2"
-          render={(props) => <AuthenticatedInfo {...props} info="details" isAuthenticated={true} />}
+          render={(props) => <AuthenticatedInfo {...props} info="details" isAuthenticated={false} />}
         />
         {/* Switch allows us to add Not Found Page if URL doesn't match a specified path */}
         <Route component={NotFound} />
