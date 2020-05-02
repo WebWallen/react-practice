@@ -11,12 +11,13 @@ import ReduxPractice from './practice/redux-101';
 import ReduxExpensify from './practice/redux-expensify';
 // Begin React/Redux Expensify Imports
 import { createStore, combineReducers } from 'redux';
-import { Provider } from 'react-redux';
 import { addExpense } from './actions/expenses';
 import { setTextFilter } from './actions/filters';
 import { getVisibleExpenses } from './selectors/expenses';
 import { expensesReducer } from './reducers/expenses';
 import { filtersReducer } from './reducers/filters';
+import { AdminInfo } from './practice/hoc';
+import { AuthenticatedInfo } from './practice/hoc';
 
 const store = createStore(
     combineReducers({
@@ -32,8 +33,6 @@ store.dispatch(setTextFilter('cof'));
 const state = store.getState();
 const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
 console.log(visibleExpenses);
-
-console.log(store.getState());
 
 export default function App() {
   return (
@@ -51,6 +50,15 @@ export default function App() {
         <Route path="/help" component={Help} />
         <Route path="/redux" component={ReduxPractice} />
         <Route path="/expensify" component={ReduxExpensify} />
+        <Route 
+          exact path="/hoc" 
+          // Render is called for when props are being passed to component attached to React Router
+          render={(props) => <AdminInfo {...props} info="details" isAdmin={false} />} 
+        />
+        <Route 
+          path="/hoc-2"
+          render={(props) => <AuthenticatedInfo {...props} info="details" isAuthenticated={true} />}
+        />
         {/* Switch allows us to add Not Found Page if URL doesn't match a specified path */}
         <Route component={NotFound} />
      </Switch>
