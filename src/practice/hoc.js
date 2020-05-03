@@ -27,10 +27,8 @@ const withAdminWarning = (WrappedComponent) => {
 const requireAuthentication = (WrappedComponent) => {
     return (props) => (
         <div>
-            {/* Only show this info after the user has been authenticated */}
-            {
-                props.isAuthenticated ? <p>Why yes. That is you. Hello!</p> : <p>Why you be hacking? Go away!</p>
-            }
+            {/* Only show this info after the user has been authenticated; otherwise, inform invalid credentials */}
+            { props.isAuthenticated ? <p>Why yes. That is you. Hello!</p> : <p>Why you be hacking? Go away!</p> }
            
             <WrappedComponent {...props} />
         </div>
