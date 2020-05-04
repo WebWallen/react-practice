@@ -33,7 +33,7 @@ const requireAuthentication = (WrappedComponent) => {
             <WrappedComponent {...props} />
         </div>
     )
-}
+};
 
 export const AdminInfo = withAdminWarning(Info);
 export const AuthenticatedInfo = requireAuthentication(Info);
