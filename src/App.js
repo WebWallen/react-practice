@@ -18,21 +18,7 @@ import { expensesReducer } from './reducers/expenses';
 import { filtersReducer } from './reducers/filters';
 import { AdminInfo } from './practice/hoc';
 import { AuthenticatedInfo } from './practice/hoc';
-
-const store = createStore(
-    combineReducers({
-        expenses: expensesReducer,
-        filters: filtersReducer,
-    })
-)
-
-store.dispatch(addExpense({ description: 'Coffee' }));
-store.dispatch(addExpense({ description: 'Tacos' }));
-store.dispatch(setTextFilter('cof'));
-
-const state = store.getState();
-const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
-console.log(visibleExpenses);
+import ExpenseDashboard from './components/ExpenseDashboard';
 
 export default function App() {
   return (
@@ -50,6 +36,7 @@ export default function App() {
         <Route path="/help" component={Help} />
         <Route path="/redux" component={ReduxPractice} />
         <Route path="/expensify" component={ReduxExpensify} />
+        <Route path="/dashboard" component={ExpenseDashboard} />
         <Route 
           exact path="/hoc" 
           // Render is called for when props are being passed to component attached to React Router
