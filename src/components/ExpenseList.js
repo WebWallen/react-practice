@@ -6,9 +6,11 @@ import { connect } from 'react-redux';
 const ExpenseList = (props) => (
     <div>
         <h1>Expense List</h1>
-        {/* This will turn into a map function, just wanted to make sure it's rendering for now */}
-        {props.expenses.length}
-        {props.filters.text}
+        {
+            props.expenses.map(expense => <p>{expense.text}</p>)
+        }
+        {/* {props.expenses.length} */}
+        {/* {props.filters.text} */}
     </div>
 );
 
