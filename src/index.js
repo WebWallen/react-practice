@@ -19,13 +19,10 @@ const store = createStore(
     })
 );
 
-store.dispatch(addExpense({ description: 'Coffee' }));
-store.dispatch(addExpense({ description: 'Tacos' }));
-store.dispatch(setTextFilter('cof'));
-
-const state = store.getState();
-const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
-console.log(visibleExpenses);
+store.dispatch(addExpense({ description: 'Coffee', amount: 3, createdAt: 1 }));
+store.dispatch(addExpense({ description: 'Tacos', amount: 5, createdAt: 10 }));
+store.dispatch(addExpense({ description: 'Gum', amount: 1, createdAt: 100 }));
+// store.dispatch(setTextFilter('cof'));
 
 ReactDOM.render(
     <Provider store={store}>
