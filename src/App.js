@@ -13,7 +13,6 @@ import ReduxExpensify from './practice/redux-expensify';
 import { createStore, combineReducers } from 'redux';
 import { addExpense } from './actions/expenses';
 import { setTextFilter } from './actions/filters';
-import { getVisibleExpenses } from './selectors/expenses';
 import { expensesReducer } from './reducers/expenses';
 import { filtersReducer } from './reducers/filters';
 import { AdminInfo } from './practice/hoc';

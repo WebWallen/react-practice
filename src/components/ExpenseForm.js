@@ -4,8 +4,6 @@ import 'react-dates/initialize';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
-const now = moment();
-
 export default class ExpenseForm extends React.Component {
     constructor(props) {
         super(props);
@@ -42,7 +40,7 @@ export default class ExpenseForm extends React.Component {
         if (createdAt) this.setState(() => ({ createdAt }));
     }
 
-    onFocusChange = (focused) => {
+    onFocusChange = ({ focused }) => {
         this.setState(() => ({ calendarFocused: focused }));
     }
 
