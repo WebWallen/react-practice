@@ -7,14 +7,7 @@ import AddExpense from './components/AddExpense';
 import EditExpense from './components/EditExpense';
 import Help from './components/Help';
 import NotFound from './components/NotFound';
-import ReduxPractice from './practice/redux-101';
-import ReduxExpensify from './practice/redux-expensify';
 // Begin React/Redux Expensify Imports
-import { createStore, combineReducers } from 'redux';
-import { addExpense } from './actions/expenses';
-import { setTextFilter } from './actions/filters';
-import { expensesReducer } from './reducers/expenses';
-import { filtersReducer } from './reducers/filters';
 import { AdminInfo } from './practice/hoc';
 import { AuthenticatedInfo } from './practice/hoc';
 import ExpenseDashboard from './components/ExpenseDashboard';
